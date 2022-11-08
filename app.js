@@ -7,6 +7,14 @@
 // }
 
 let cardRow = document.querySelector("body > main > div > div > div")
+function hideImage() {
+  let buttonRow = event.target.parentElement
+  let buttoncontainer = buttonRow.parentElement
+  let cardText = buttoncontainer.parentElement
+  let card = cardText.parentElement
+  card.classList.add("d-none")
+}
+
 const loadPictures = () => {
   cardRow.innerHTML = ""
 
@@ -48,8 +56,9 @@ const loadPictures = () => {
                 <button
                   type="button"
                   class="btn btn-sm btn-outline-secondary"
+                  onclick="hideImage()"
                 >
-                  Edit
+                  Hide
                 </button>
               </div>
               <small class="text-muted">9 mins</small>
