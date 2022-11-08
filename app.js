@@ -16,8 +16,6 @@ function hideImage() {
 }
 
 const loadPictures = () => {
-  cardRow.innerHTML = ""
-
   fetch("https://api.pexels.com/v1/search?query=nature", {
     headers: {
       Authorization: "563492ad6f917000010000015aa03bb932984aafad429ad9c76e61af"
@@ -27,15 +25,15 @@ const loadPictures = () => {
       return response.json()
     })
     .then((data) => {
-      console.log(data)
+      cardRow.innerHTML = ""
       console.log(data.photos)
 
       for (img of data.photos) {
-        console.log(createImageBitmap)
         cardRow.innerHTML += `
         <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
-        <img src="${img.src.medium}" />
+        <img src="${img.src.medium}" style="width=100%;
+        height=225px; object-fit: contain"/>
           
           <div class="card-body">
             <p class="card-text">
@@ -61,11 +59,63 @@ const loadPictures = () => {
                   Hide
                 </button>
               </div>
-              <small class="text-muted">9 mins</small>
+              <small class="text-muted">${img.id}</small>
             </div>
           </div>
         </div>
       </div>`
+      }
+    })
+}
+
+const loadSecondPic = () => {
+  fetch("https://api.pexels.com/v1/search?query=architecture", {
+    headers: {
+      Authorization: "563492ad6f917000010000015aa03bb932984aafad429ad9c76e61af"
+    }
+  })
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      cardRow.innerHTML = ""
+      console.log(data.photos)
+
+      for (img of data.photos) {
+        cardRow.innerHTML += `
+          <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+          <img src="${img.src.medium}" />
+            
+            <div class="card-body">
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <div
+                class="d-flex justify-content-between align-items-center"
+              >
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                  >
+                    View
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                    onclick="hideImage()"
+                  >
+                    Hide
+                  </button>
+                </div>
+                <small class="text-muted">${img.id}</small>
+              </div>
+            </div>
+          </div>
+        </div>`
       }
     })
 }
