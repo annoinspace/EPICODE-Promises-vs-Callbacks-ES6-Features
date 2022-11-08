@@ -7,64 +7,6 @@
 // }
 
 let cardRow = document.querySelector("body > main > div > div > div")
-let searchBar = document.getElementById("searchType")
-let submitButton = document.getElementById("submitButton")
-
-// submitButton.addEventListener("click", searchImage)
-
-// const searchImage = () => {
-//   let search = searchBar.value
-//   fetch(`https://api.pexels.com/v1/search?query=${search}`, {
-//     headers: {
-//       Authorization: "563492ad6f917000010000015aa03bb932984aafad429ad9c76e61af"
-//     }
-//   })
-//     .then((response) => {
-//       return response.json()
-//     })
-//     .then((data) => {
-//       cardRow.innerHTML = ""
-//       console.log(data.photos)
-
-//       for (img of data.photos) {
-//         cardRow.innerHTML += `
-//       <div class="col-md-4">
-//       <div class="card mb-4 shadow-sm">
-//       <img src="${img.src.medium}" style="width=100%;
-//       height=225px; object-fit: contain"/>
-
-//         <div class="card-body">
-//           <p class="card-text">
-//             This is a wider card with supporting text below as a natural
-//             lead-in to additional content. This content is a little bit
-//             longer.
-//           </p>
-//           <div
-//             class="d-flex justify-content-between align-items-center"
-//           >
-//             <div class="btn-group">
-//               <button
-//                 type="button"
-//                 class="btn btn-sm btn-outline-secondary"
-//               >
-//                 View
-//               </button>
-//               <button
-//                 type="button"
-//                 class="btn btn-sm btn-outline-secondary"
-//                 onclick="hideImage()"
-//               >
-//                 Hide
-//               </button>
-//             </div>
-//             <small class="text-muted">${img.id}</small>
-//           </div>
-//         </div>
-//       </div>
-//     </div>`
-//       }
-//     })
-// }
 
 function hideImage() {
   let buttonRow = event.target.parentElement
@@ -175,6 +117,64 @@ const loadSecondPic = () => {
             </div>
           </div>
         </div>`
+      }
+    })
+}
+
+let submitButton = document.getElementById("submitButton")
+
+submitButton.addEventListener("click", searchImage)
+
+const searchImage = () => {
+  let search = document.getElementById("searchType").value
+  fetch(`https://api.pexels.com/v1/search?query=${search}`, {
+    headers: {
+      Authorization: "563492ad6f917000010000015aa03bb932984aafad429ad9c76e61af"
+    }
+  })
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      cardRow.innerHTML = ""
+      console.log(data.photos)
+
+      for (img of data.photos) {
+        cardRow.innerHTML += `
+      <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+      <img src="${img.src.medium}" style="width=100%;
+      height=225px; object-fit: contain"/>
+
+        <div class="card-body">
+          <p class="card-text">
+            This is a wider card with supporting text below as a natural
+            lead-in to additional content. This content is a little bit
+            longer.
+          </p>
+          <div
+            class="d-flex justify-content-between align-items-center"
+          >
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-secondary"
+              >
+                View
+              </button>
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-secondary"
+                onclick="hideImage()"
+              >
+                Hide
+              </button>
+            </div>
+            <small class="text-muted">${img.id}</small>
+          </div>
+        </div>
+      </div>
+    </div>`
       }
     })
 }
