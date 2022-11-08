@@ -121,12 +121,9 @@ const loadSecondPic = () => {
     })
 }
 
-let submitButton = document.getElementById("submitButton")
-
-submitButton.addEventListener("click", searchImage)
-
 const searchImage = () => {
-  let search = document.getElementById("searchType").value
+  const search = document.getElementById("searchType").value
+  console.log(search)
   fetch(`https://api.pexels.com/v1/search?query=${search}`, {
     headers: {
       Authorization: "563492ad6f917000010000015aa03bb932984aafad429ad9c76e61af"
@@ -178,6 +175,9 @@ const searchImage = () => {
       }
     })
 }
+
+const submitButton = document.getElementById("submitButton")
+submitButton.addEventListener("click", searchImage)
 
 // let placeholderContainer = document.querySelector("body > main > div")
 // let loadButton = document.querySelector(
