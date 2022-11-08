@@ -14,10 +14,11 @@ function hideImage() {
   let cardText = buttoncontainer.parentElement
   let card = cardText.parentElement
   card.classList.add("d-none")
+  cardRow.removeChild(card)
 }
 
 const loadPictures = () => {
-  fetch("https://api.pexels.com/v1/search?query=nature", {
+  fetch("https://api.pexels.com/v1/search?query=japan", {
     headers: {
       Authorization: "563492ad6f917000010000015aa03bb932984aafad429ad9c76e61af"
     }
@@ -34,7 +35,7 @@ const loadPictures = () => {
         <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
         <img src="${img.src.medium}" style="width=100%;
-        height=225px; object-fit: contain"/>
+        height=225px; object-fit:contain"/>
           
           <div class="card-body">
             <p class="card-text">
@@ -70,7 +71,7 @@ const loadPictures = () => {
 }
 
 const loadSecondPic = () => {
-  fetch("https://api.pexels.com/v1/search?query=architecture", {
+  fetch("https://api.pexels.com/v1/search?query=nature", {
     headers: {
       Authorization: "563492ad6f917000010000015aa03bb932984aafad429ad9c76e61af"
     }
@@ -86,7 +87,8 @@ const loadSecondPic = () => {
         cardRow.innerHTML += `
           <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-          <img src="${img.src.medium}" />
+          <img src="${img.src.medium}" style="width=100%;
+          height=225px; object-fit:contain"/>
             
             <div class="card-body">
               <p class="card-text">
@@ -141,7 +143,7 @@ const searchImage = () => {
       <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
       <img src="${img.src.medium}" style="width=100%;
-      height=225px; object-fit: contain"/>
+      height=225px; object-fit:contain"/>
 
         <div class="card-body">
           <p class="card-text">
